@@ -124,7 +124,7 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-
+              'users' => 'App\GraphQL\Query\UsersQuery'
             ],
             'mutation' => [
 
@@ -181,7 +181,7 @@ return [
      * ]
      */
     'types' => [
-
+      'User' => 'App\GraphQL\Type\UserType'
     ],
 
     /*
