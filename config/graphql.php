@@ -127,7 +127,7 @@ return [
               'users' => 'App\GraphQL\Query\UsersQuery'
             ],
             'mutation' => [
-
+              'updateUserPassword' => 'App\GraphQL\Mutation\UpdateUserPasswordMutation'
             ]
         ]
     ],
