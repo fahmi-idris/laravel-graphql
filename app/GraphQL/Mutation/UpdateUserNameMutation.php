@@ -6,10 +6,10 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use App\User;
 
-class UpdateUserPasswordMutation extends Mutation
+class UpdateUserNameMutation extends Mutation
 {
     protected $attributes = [
-        'name' => 'updateUserPassword'
+        'name' => 'updateUserName'
     ];
 
     public function type()
@@ -21,19 +21,18 @@ class UpdateUserPasswordMutation extends Mutation
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::nonNull(Type::string())],
-            'password' => ['name' => 'password', 'type' => Type::nonNull(Type::string())]
+            'name' => ['name' => 'name', 'type' => Type::nonNull(Type::string())],
+            'email' => ['email' => 'name', 'type' => Type::nonNull(Type::string())],
         ];
     }
 
     public function resolve($root, $args)
     {
         $user = User::find($args['id']);
+        if (!$user) return null;
 
-        if (!$user) {
-            return null;
-        }
-
-        $user->password = bcrypt($args['password']);
+        $user->name = $args['name'];
+        $user->email = $args['email'];
         $user->save();
 
         return $user;
